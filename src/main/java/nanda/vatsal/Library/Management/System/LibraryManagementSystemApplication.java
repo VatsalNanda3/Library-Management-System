@@ -11,7 +11,7 @@ import org.springframework.context.event.EventListener;
 
 import nanda.vatsal.email.EmailSenderService;
 
-@SpringBootApplication(scanBasePackages= {"nanda.vatsal.test","nanda.vatsal.Library.Management.System","nanda.vatsal.books","nanda.vatsal.user","nanda.vatsal.configuration","nanda.vatsal.lib","nanda.vatsal.email"})
+@SpringBootApplication(scanBasePackages= {"nanda.vatsal.test","nanda.vatsal.Library.Management.System","nanda.vatsal.books","nanda.vatsal.user","nanda.vatsal.configuration","nanda.vatsal.lib","nanda.vatsal.email","nanda.vatsal.payment"})
 public class LibraryManagementSystemApplication {
 	
 	public static void main(String[] args) {

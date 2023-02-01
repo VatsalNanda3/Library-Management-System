@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payment;
+
 import nanda.vatsal.books.Book;
 import nanda.vatsal.books.BookRepository;
+import nanda.vatsal.payment.Order;
+import nanda.vatsal.payment.PayPalService;
 import nanda.vatsal.user.User;
 import nanda.vatsal.user.UserRepository;
 
@@ -28,8 +33,12 @@ public class LibraryService {
 	@Autowired
 	LibraryRepository libraryRepository;
 	
+	
+	
 	public Library lendBooksToUsers(int userId,int bookId)  
 	{
+		
+		Order ord=new Order();
 		Book borrowBook=bookRepository.findById(bookId).get();
 		
 		User borrowUser=userRepository.findById(userId).get();
@@ -45,6 +54,7 @@ public class LibraryService {
 		lib.setActual_return_date(LocalDate.now().plusDays(7));
 		
 		borrowBook.setQuantity(borrowBook.getQuantity()-1);
+		
 		
 		
 		libraryRepository.save(lib);
@@ -87,6 +97,7 @@ public class LibraryService {
 		
 		int val=borrowBook.getQuantity()+1;
 		borrowBook.setQuantity(val);
+		
 		libraryRepository.save(lendedBook);
 		return lendedBook;
 		

@@ -92,16 +92,19 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		
-		
-
-
-
-
 		<dependency>
-			<groupId>nanda.vatsal</groupId>
-			<artifactId>course-api-new</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<groupId>com.paypal.sdk</groupId>
+			<artifactId>rest-api-sdk</artifactId>
+			<version>1.4.2</version>
 		</dependency>
+		
+		<dependency>
+      		<groupId>org.springframework.boot</groupId>
+      		<artifactId>spring-boot-starter-thymeleaf</artifactId>
+ 		</dependency>
+ 		
+ 	
+
 	</dependencies>
 
 	<build>

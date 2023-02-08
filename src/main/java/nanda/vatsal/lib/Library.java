@@ -4,6 +4,7 @@
 package nanda.vatsal.lib;
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Library_Details")
-public class Library {
+public class Library implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

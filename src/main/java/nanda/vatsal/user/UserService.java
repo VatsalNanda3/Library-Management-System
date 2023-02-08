@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import nanda.vatsal.books.Book;
@@ -19,6 +22,8 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	
 	
 	public List<User> getAllUsers()
 	{
@@ -32,6 +37,7 @@ public class UserService {
 		
 	}
 	
+	
 	public User getUserById(int id)
 	{
 		return userRepository.findById(id).orElse(null);
@@ -39,10 +45,12 @@ public class UserService {
 				
 	}
 	
+	
 	public User getUserByName(String name)
 	{
 		return userRepository.findByName(name);				
 	}
+	
 	
 	public void addUser(User user)
 	{
@@ -55,6 +63,7 @@ public class UserService {
 		
 		return userRepository.save(user);
 	}
+	
 	
 	public void deleteUser(int id)
 	{

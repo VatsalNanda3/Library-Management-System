@@ -16,9 +16,9 @@ public class TestController {
 	
 	
 	@RequestMapping("/")
-	public String test(@ModelAttribute Order order) {
+	public String test() {
 		
-		System.out.println(order.toString());
+		
 		
 		
 		return "Welcome to Library Management System";

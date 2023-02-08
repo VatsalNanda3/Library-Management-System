@@ -5,6 +5,10 @@ package nanda.vatsal.user;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.http.HttpStatus;
+
 
 import nanda.vatsal.books.Book;
 import nanda.vatsal.books.BookService;
@@ -25,42 +36,52 @@ public class UserController {
 	public UserService userService;
 	
 	@Autowired
+	public UserRepository userRepository;
 	
-	public BookService bookService;
+	private ObjectMapper OBJECT_MAPPER=new ObjectMapper();
 	
 	@RequestMapping("/users")
+	//@Cacheable(value="User")
 	public List<User> getAllUsers()
 	{
+		
 		return userService.getAllUsers();
 	}
 	
 	@RequestMapping("/userById/{id}")
-	public User getUserById(@PathVariable int id)
-	{
+	@Cacheable(value = "User",key = "#id") 
+	public User getUserById(@PathVariable(value="id") Integer id) 	{
+		
+		
+		
+		User userEx=userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with ID " + id));
 		return userService.getUserById(id);
 		
 				
 	}
 	
 	@RequestMapping("/userByName/{name}")
-	public User getUserByName(@PathVariable String name)
-	{
-		return userService.getUserByName(name);				
+	@Cacheable(value="User",key="#name")
+	public User getUserByName(@PathVariable(value="name") String name)
+	{	
+		
+		return userService.getUserByName(name);
 	}
 	
 	
 	@RequestMapping(method=RequestMethod.POST,value="/users/addUser")
-	public void addUser(@RequestBody User user)
+	public void addUser(@RequestBody User user) 
 	{
-		userService.addUser(user);
+		 userService.addUser(user);
 	}
 	
 	
 	@RequestMapping(method=RequestMethod.PUT,value="/users/updateUser/{id}")
-	public User updateUser(@RequestBody User user,@PathVariable int id)
+	@CachePut(value="User",key="#id")
+	public User updateUser(@RequestBody User user,@PathVariable(value="id") Integer id)
 	{
 				
-		User userEx=userService.getUserById(id);
+		User userEx=userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with ID " + id));
 		userEx.setName(user.getName());
 		userEx.setEmail(user.getEmail());
 		userEx.setGender(user.getGender());
@@ -72,8 +93,10 @@ public class UserController {
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE,value="/users/deleteUser/{id}")
-	public void deleteUser(@PathVariable int id)
+	@CacheEvict(value="User",allEntries = true)
+	public void deleteUser(@PathVariable(value="id") Integer id)
 	{
+		User userEx=userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with ID " + id));
 		userService.deleteUser(id);
 	}
 	

@@ -1,16 +1,28 @@
 package nanda.vatsal.payment;
 
-import javax.persistence.Entity;
+import java.io.Serializable;
 
 
-public class Order {
+public class Order implements Serializable{
 	
-	private double price;
-	private String currency;
-	private String method;
-	private String intent;
-	private String description;
+	
 	private int borrowerId;
+	
+
+	private double price;
+	
+	
+	private String currency;
+	
+	
+	private String method;
+	
+	
+	private String intent;
+	
+
+	private String description;
+	
 	
 	
 	public Order() {

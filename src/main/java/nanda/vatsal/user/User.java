@@ -2,6 +2,7 @@
 
 package nanda.vatsal.user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import nanda.vatsal.books.Book;
 
 @Entity
 @Table(name="list_of_users")
-public class User {
+public class User implements Serializable{
 	
 	
 	@Id
@@ -34,8 +35,11 @@ public class User {
 	@Column(name="role")
 	private String role;
 	
+	@Column(name="phoneNo")
+	private String phoneNo;
+	
 
-	public User(int id, String name, String email, String password, String gender, String role) {
+	public User(int id, String name, String email, String password, String gender, String role, String phoneNo) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -43,6 +47,7 @@ public class User {
 		this.password = password;
 		this.gender = gender;
 		this.role = role;
+		this.phoneNo=phoneNo;
 		
 	}
 
@@ -112,6 +117,18 @@ public class User {
 		this.role = role;
 	}
 
+
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+
+
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
+
+
+	
 
 	
 	

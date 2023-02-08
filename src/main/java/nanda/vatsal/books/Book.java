@@ -12,11 +12,13 @@ import javax.persistence.Table;
 
 import nanda.vatsal.user.User;
 
+import java.io.Serializable;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name="List_of_Books") //specifying the table name, by default it will choose the class name
-public class Book {
+public class Book  implements Serializable{
 	
 	@Id // Used for primary key
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 

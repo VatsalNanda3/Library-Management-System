@@ -67,6 +67,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/books/deleteBook/{id}").access("hasAuthority('ADMIN')")
                 .antMatchers("/lend/{userId}/{bookId}").access("hasAuthority('ADMIN')")
                 .antMatchers("/return/{borrowerId}/{bookId}}").access("hasAuthority('ADMIN')")
+                .antMatchers("/payHome").access("hasAuthority('USER')")
                 .anyRequest()
                 .authenticated()
                 .and()

@@ -46,7 +46,7 @@ public class BookController {
 	public Book getBookById(@PathVariable(value="id") Integer id) throws InterruptedException
 	{
 		
-		Book Book=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
+		Book book=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
 		return bookService.getBookById(id);
 		
 				
@@ -71,7 +71,7 @@ public class BookController {
 	@CachePut(value="Book", key="#id")
 	public Book updateBook(@RequestBody Book book,@PathVariable(value="id") Integer id)
 	{
-		Book Book=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
+		Book bookval=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
 		Book bookEx=bookService.getBookById(id);
 		bookEx.setAuthor(book.getAuthor());
 		bookEx.setIsbn(book.getIsbn());
@@ -85,7 +85,7 @@ public class BookController {
 	@CacheEvict(value="Book", allEntries = true)
 	public void deleteBook(@PathVariable(value="id") Integer id)
 	{
-		Book Book=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
+		Book book=bookRepository.findById(id).orElseThrow(() -> new BookNotFoundException("Book not found with ID " + id));
 		bookService.deleteBook(id);
 	}
 	

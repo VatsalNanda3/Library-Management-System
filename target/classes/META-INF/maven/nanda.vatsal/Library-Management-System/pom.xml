@@ -46,10 +46,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.kafka</groupId>
 			<artifactId>spring-kafka</artifactId>
@@ -112,9 +112,14 @@
     		<groupId>com.fasterxml.jackson.core</groupId>
     		<artifactId>jackson-annotations</artifactId>
 		</dependency>
-		
-		
 
+
+
+		<dependency>
+			<groupId>nanda.vatsal.kafka</groupId>
+			<artifactId>Kafka-microservice</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

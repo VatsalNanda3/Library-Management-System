@@ -111,6 +111,14 @@ public class Reserve  implements Serializable{
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
+
+	@Override
+	public String toString() {
+		return "Reserve [reserveId=" + reserveId + ", userId=" + userId + ", userName=" + userName + ", userEmail="
+				+ userEmail + ", userPhone=" + userPhone + ", bookId=" + bookId + ", bookName=" + bookName + "]";
+	}
+	
+	
 	
 	
 }

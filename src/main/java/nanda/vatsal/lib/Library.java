@@ -144,6 +144,15 @@ public class Library implements Serializable{
 	public void setFine(int fine) {
 		this.fine = fine;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Library [borrower_id=" + borrower_id + ", book_id=" + book_id + ", user_name=" + user_name
+				+ ", book_issued=" + book_issued + ", borrow_date=" + borrow_date + ", return_date=" + return_date
+				+ ", actual_return_date=" + actual_return_date + ", email=" + email + ", fine=" + fine + "]";
+	}
+	
 	
 	
 	

@@ -109,6 +109,14 @@ public class Book  implements Serializable{
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", quantity=" + quantity + ", isbn=" + isbn + ", title=" + title + ", author="
+				+ author + ", price=" + price + "]";
+	}
+	
+	
 	
 	
 		
